@@ -27,6 +27,9 @@ public class MenuActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.menu_filme){
             Intent intent = new Intent(MenuActivity.this, VotoFilmeActivity.class);
             startActivity(intent);
+        }else if(item.getItemId() == R.id.menu_diretor){
+            Intent intent = new Intent(MenuActivity.this, VotoDiretorActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
