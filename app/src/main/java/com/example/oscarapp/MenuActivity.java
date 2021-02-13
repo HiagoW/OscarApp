@@ -7,13 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
+
+    TextView textViewToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        textViewToken = findViewById(R.id.textViewToken);
+        textViewToken.setText("Token: " + MainActivity.user.getToken());
     }
 
     @Override
