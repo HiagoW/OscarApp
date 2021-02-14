@@ -18,7 +18,8 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         textViewToken = findViewById(R.id.textViewToken);
-        textViewToken.setText("Token: " + MainActivity.user.getToken());
+//        textViewToken.setText("Token: " + MainActivity.user.getToken());
+                textViewToken.setText("Token: 0");
     }
 
     @Override
