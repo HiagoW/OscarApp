@@ -5,6 +5,7 @@ public class Usuario {
     private String login;
     private String senha;
     private int token;
+    private boolean votou;
 
     public int getId() {
         return id;
@@ -36,5 +37,13 @@ public class Usuario {
 
     public void setToken(int token) {
         this.token = token;
+    }
+
+    public boolean isVotou() {
+        return votou;
+    }
+
+    public void setVotou(boolean votou) {
+        this.votou = votou;
     }
 }
