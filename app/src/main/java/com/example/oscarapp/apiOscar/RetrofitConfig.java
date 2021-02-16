@@ -19,4 +19,8 @@ public class RetrofitConfig {
         return this.retrofit.create(FilmesService.class);
     }
 
+
+    public DiretoresService getDiretoresService(){ return this.retrofit.create(DiretoresService.class);
+    }
+
 }

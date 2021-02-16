@@ -7,9 +7,8 @@ import model.Filmes;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface FilmesService {
+public interface MyService {
 
-    @GET("/ufpr/filme")
-    Call<List<Filmes>> getFilmes();
-
+    @GET("/ufpr/diretor")
+    Call<List<Diretor>> getDiretor();
 }
