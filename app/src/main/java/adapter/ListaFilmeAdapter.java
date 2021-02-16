@@ -1,6 +1,9 @@
 package adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +17,25 @@ import com.example.oscarapp.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.util.List;
 
 import model.Filmes;
+
 
 public class ListaFilmeAdapter extends RecyclerView.Adapter<ListaFilmeAdapter.MyViewHolder> {
     private List<Filmes> list;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nome, genero;
-        ImageView imagem;
+        ImageView foto;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nome = itemView.findViewById(R.id.textViewNome);
             genero = itemView.findViewById(R.id.textViewGenero);
-            imagem = itemView.findViewById(R.id.imageViewFilme);
+            foto = itemView.findViewById(R.id.imageViewFilme);
         }
     }
 
@@ -47,16 +52,20 @@ public class ListaFilmeAdapter extends RecyclerView.Adapter<ListaFilmeAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Filmes filme = list.get(position);
-        InputStream is = null;
+
+        /*Bitmap bitmap = null;
         try {
-            is = (InputStream) new URL(filme.getUrl()).getContent();
+            bitmap = BitmapFactory.decodeStream((InputStream)new URL(filme.getFoto()).getContent());
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        Drawable d = Drawable.createFromStream(is, "src name");
-        holder.nome.setText(filme.getTitle());
+        }*/
+        holder.nome.setText(filme.getNome());
         holder.genero.setText((filme.getGenero()));
-        holder.imagem.setImageDrawable(d);
+
+        holder.foto.setMaxHeight(50);
+        holder.foto.setMaxWidth(50);
+        //holder.foto.setImageBitmap(bitmap);
+
     }
 
     @Override

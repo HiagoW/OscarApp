@@ -8,6 +8,6 @@ import retrofit2.http.GET;
 
 public interface FilmesService {
 
-    @GET("/filmes")
+    @GET("/ufpr/filme")
     Call<List<Filmes>> getFilmes();
 }

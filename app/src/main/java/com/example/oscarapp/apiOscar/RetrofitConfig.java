@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitConfig {
 
     private final Retrofit retrofit;
-    private String url = "abc";
+    private String url = "http://wecodecorp.com.br/";
 
     public RetrofitConfig(){
         this.retrofit = new Retrofit.Builder()

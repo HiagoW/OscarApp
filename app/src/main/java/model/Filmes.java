@@ -2,7 +2,7 @@ package model;
 
 public class Filmes {
     private int id;
-    String title, url, genero;
+    String nome, foto, genero;
 
     public int getId() {
         return id;
@@ -20,19 +20,19 @@ public class Filmes {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getUrl() {
-        return url;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
