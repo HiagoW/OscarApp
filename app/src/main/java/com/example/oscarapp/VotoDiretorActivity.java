@@ -3,6 +3,9 @@ package com.example.oscarapp;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import adapter.ListaFilmeAdapter;
 import model.Diretor;
@@ -18,9 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.oscarapp.apiOscar.RetrofitConfig;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VotoDiretorActivity extends AppCompatActivity {
+
+    RadioGroup rg;
+    public static List<Diretor> diretoresList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +47,14 @@ public class VotoDiretorActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Diretor>> call, Response<List<Diretor>> response) {
                 if(response.isSuccessful()){
-                    filmesList = response.body();
-
-                    recyclerView = findViewById(R.id.recyclerViewLista);
-
-                    listaFilmeAdapter = new ListaFilmeAdapter(filmesList);
-
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                    recyclerView.setLayoutManager(layoutManager);
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
-                    recyclerView.setAdapter(listaFilmeAdapter);
-
+                    diretoresList = response.body();
+                    rg = findViewById(R.id.radioGroup);
+                    for(Diretor d: diretoresList){
+                        RadioButton rb = new RadioButton(VotoDiretorActivity.this);
+                        rb.setText(d.getNome());
+                        rb.setId(d.getId());
+                        rg.addView(rb);
+                    }
                     progressDialog.dismiss();
                 }
             }
@@ -59,6 +62,13 @@ public class VotoDiretorActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Diretor>> call, Throwable t) {
 
+            }
+        });
+
+        rg.setOnCheckedChangeListener(new rg.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                idDiretor = checkedId;
             }
         });
     }
