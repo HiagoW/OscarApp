@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import adapter.ListaFilmeAdapter;
 import model.Diretor;
@@ -33,6 +34,7 @@ public class VotoDiretorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voto_diretor);
+        rg = findViewById(R.id.radioGroup);
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Carregando Diretores...");
@@ -48,11 +50,13 @@ public class VotoDiretorActivity extends AppCompatActivity {
             public void onResponse(Call<List<Diretor>> call, Response<List<Diretor>> response) {
                 if(response.isSuccessful()){
                     diretoresList = response.body();
-                    rg = findViewById(R.id.radioGroup);
                     for(Diretor d: diretoresList){
                         RadioButton rb = new RadioButton(VotoDiretorActivity.this);
                         rb.setText(d.getNome());
                         rb.setId(d.getId());
+                        if(MainActivity.voto.getIdDiretor() == d.getId()){
+                            rb.setChecked(true);
+                        }
                         rg.addView(rb);
                     }
                     progressDialog.dismiss();
@@ -61,14 +65,14 @@ public class VotoDiretorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Diretor>> call, Throwable t) {
-
+                Toast.makeText(VotoDiretorActivity.this,"Erro ao buscar diretores.", Toast.LENGTH_SHORT).show();
             }
         });
 
-        rg.setOnCheckedChangeListener(new rg.OnCheckedChangeListener() {
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                idDiretor = checkedId;
+                MainActivity.voto.setIdDiretor(checkedId);
             }
         });
     }

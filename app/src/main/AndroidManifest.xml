@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OscarApp"
         android:usesCleartextTraffic="true">
-        <service
-            android:name=".apiOscar.MyService"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity android:name=".VotoFilmeActivity" />
         <activity android:name=".VotoDiretorActivity" />

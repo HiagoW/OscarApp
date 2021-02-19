@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.oscarapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,6 +60,8 @@ public class ListaFilmeAdapter extends RecyclerView.Adapter<ListaFilmeAdapter.My
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+
+        Picasso.get().load(filme.getFoto()).into(holder.foto);
         holder.nome.setText(filme.getNome());
         holder.genero.setText((filme.getGenero()));
 
