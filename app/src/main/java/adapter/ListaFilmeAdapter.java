@@ -2,6 +2,7 @@ package adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.oscarapp.MainActivity;
 import com.example.oscarapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -31,12 +33,14 @@ public class ListaFilmeAdapter extends RecyclerView.Adapter<ListaFilmeAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nome, genero;
         ImageView foto;
+        View holderSelecionado;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nome = itemView.findViewById(R.id.textViewNome);
             genero = itemView.findViewById(R.id.textViewGenero);
             foto = itemView.findViewById(R.id.imageViewFilme);
+            holderSelecionado = itemView;
         }
     }
 
@@ -65,6 +69,10 @@ public class ListaFilmeAdapter extends RecyclerView.Adapter<ListaFilmeAdapter.My
         holder.nome.setText(filme.getNome());
         holder.genero.setText((filme.getGenero()));
 
+        if(filme.getId() == MainActivity.voto.getIdFilme()){
+            holder.holderSelecionado.setBackgroundColor(Color.parseColor("#567845"));
+            holder.nome.setText(filme.getNome() + " (SELECIONADO)");
+        }
         holder.foto.setMaxHeight(50);
         holder.foto.setMaxWidth(50);
         //holder.foto.setImageBitmap(bitmap);

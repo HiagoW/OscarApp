@@ -34,6 +34,9 @@ public class VotoFilmeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voto_filme);
 
+        //PARA TESTE
+        MainActivity.voto.setIdFilme(2);
+
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Carregando Filmes...");
         progressDialog.show();
