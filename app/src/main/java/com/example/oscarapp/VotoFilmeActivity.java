@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,9 +31,11 @@ public class VotoFilmeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListaFilmeAdapter listaFilmeAdapter;
     public static List<Filmes> filmesList = new ArrayList<>();
+    public static Activity vfa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        vfa = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voto_filme);
 
@@ -67,7 +70,7 @@ public class VotoFilmeActivity extends AppCompatActivity {
                     recyclerView.addOnItemTouchListener(new MyRecycleViewClickListener(VotoFilmeActivity.super.getBaseContext(), new MyRecycleViewClickListener.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            Intent it = new Intent(VotoFilmeActivity.super.getBaseContext(), DetalheFilmeActivity.class);
+                            Intent it = new Intent(VotoFilmeActivity.this, DetalheFilmeActivity.class);
 
                             Bundle params = new Bundle();
                             params.putString("nomeFilme", filmesList.get(position).getNome());

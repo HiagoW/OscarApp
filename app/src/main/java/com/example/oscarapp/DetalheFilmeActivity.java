@@ -50,8 +50,13 @@ public class DetalheFilmeActivity extends AppCompatActivity {
     public void buttonVotar(View view){
         MainActivity.voto.setIdFilme(idFilme);
 
+        VotoFilmeActivity.vfa.finish();
+
         Intent it = new Intent(DetalheFilmeActivity.super.getBaseContext(), VotoFilmeActivity.class);
+
         startActivity(it);
+
+        finish();
 
     }
 }
