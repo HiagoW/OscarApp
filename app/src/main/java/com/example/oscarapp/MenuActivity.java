@@ -47,37 +47,13 @@ public class MenuActivity extends AppCompatActivity {
             Intent intent = new Intent(MenuActivity.this, VotoDiretorActivity.class);
             startActivity(intent);
         }else if(item.getItemId() == R.id.confirma_votos){
-//            if(MainActivity.user.isVotou()){
-//                Toast.makeText(this,"Já votou!",Toast.LENGTH_SHORT).show();
-//            }else {
-//                MainActivity.voto.setIdDiretor(1);
-//                MainActivity.voto.setIdFilme(2);
-//                Call<Voto> call = new RetrofitConfigWebService().webService().votar(MainActivity.voto);
-//
-//                ProgressDialog progressDialog = new ProgressDialog(this);
-//                progressDialog.setMessage("Votando...");
-//                progressDialog.show();
-//
-//                call.enqueue(new Callback<Voto>() {
-//                    @Override
-//                    public void onResponse(Call<Voto> call, Response<Voto> response) {
-//                        if(response.isSuccessful()){
-//                            progressDialog.dismiss();
-//                            Toast.makeText(MenuActivity.this,"Voto computado com sucesso",Toast.LENGTH_SHORT).show();
-//                            MainActivity.user.setVotou(true);
-//                        }else{
-//                            progressDialog.dismiss();
-//                            Toast.makeText(MenuActivity.this,"Erro ao computar voto.",Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<Voto> call, Throwable t) {
-//                        progressDialog.dismiss();
-//                        Toast.makeText(MenuActivity.this,"Erro ao computar voto.",Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
+            if(MainActivity.voto.getIdFilme() == 0 ||
+            MainActivity.voto.getIdDiretor() == 0){
+                Toast.makeText(MenuActivity.this, "Você ainda não votou nas categorias.", Toast.LENGTH_SHORT).show();
+            }else {
+                Intent intent = new Intent(MenuActivity.this, ConfirmarVotoActivity.class);
+                startActivity(intent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

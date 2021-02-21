@@ -72,7 +72,12 @@ public class VotoDiretorActivity extends AppCompatActivity {
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                MainActivity.voto.setIdDiretor(checkedId);
+                if(MainActivity.user.isVotou()){
+                    Toast.makeText(VotoDiretorActivity.this, "Você já confirmou seu voto, não é possível mudar!", Toast.LENGTH_SHORT).show();
+                    group.check(MainActivity.voto.getIdDiretor());
+                }else {
+                    MainActivity.voto.setIdDiretor(checkedId);
+                }
             }
         });
     }

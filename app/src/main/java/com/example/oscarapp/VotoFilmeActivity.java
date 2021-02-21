@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.oscarapp.apiOscar.RetrofitConfig;
 
@@ -66,7 +67,7 @@ public class VotoFilmeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Filmes>> call, Throwable t) {
-
+                Toast.makeText(VotoFilmeActivity.this,"Erro ao buscar filmes.", Toast.LENGTH_SHORT).show();
             }
         });
 
