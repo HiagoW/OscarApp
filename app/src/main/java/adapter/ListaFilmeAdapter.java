@@ -1,10 +1,6 @@
 package adapter;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +14,6 @@ import com.example.oscarapp.MainActivity;
 import com.example.oscarapp.R;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 import java.util.List;
 
 import model.Filmes;
@@ -51,19 +43,13 @@ public class ListaFilmeAdapter extends RecyclerView.Adapter<ListaFilmeAdapter.My
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View listaItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.filme_lista_cell, parent, false);
         return new MyViewHolder(listaItem);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Filmes filme = list.get(position);
-
-        /*Bitmap bitmap = null;
-        try {
-            bitmap = BitmapFactory.decodeStream((InputStream)new URL(filme.getFoto()).getContent());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
         Picasso.get().load(filme.getFoto()).into(holder.foto);
         holder.nome.setText(filme.getNome());
@@ -73,9 +59,6 @@ public class ListaFilmeAdapter extends RecyclerView.Adapter<ListaFilmeAdapter.My
             holder.holderSelecionado.setBackgroundColor(Color.parseColor("#567845"));
             holder.nome.setText(filme.getNome() + " (SELECIONADO)");
         }
-        holder.foto.setMaxHeight(50);
-        holder.foto.setMaxWidth(50);
-        //holder.foto.setImageBitmap(bitmap);
 
     }
 

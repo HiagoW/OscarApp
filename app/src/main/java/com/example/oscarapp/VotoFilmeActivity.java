@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -36,7 +37,7 @@ public class VotoFilmeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_voto_filme);
 
         //PARA TESTE
-        MainActivity.voto.setIdFilme(2);
+        //MainActivity.voto.setIdFilme(2);
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Carregando Filmes...");
@@ -62,6 +63,23 @@ public class VotoFilmeActivity extends AppCompatActivity {
                     recyclerView.setAdapter(listaFilmeAdapter);
 
                     progressDialog.dismiss();
+
+                    recyclerView.addOnItemTouchListener(new MyRecycleViewClickListener(VotoFilmeActivity.super.getBaseContext(), new MyRecycleViewClickListener.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Intent it = new Intent(VotoFilmeActivity.super.getBaseContext(), DetalheFilmeActivity.class);
+
+                            Bundle params = new Bundle();
+                            params.putString("nomeFilme", filmesList.get(position).getNome());
+                            params.putString("generoFilme", filmesList.get(position).getGenero());
+                            params.putString("fotoFilme", filmesList.get(position).getFoto());
+                            params.putInt("idFilme", filmesList.get(position).getId());
+
+                            it.putExtras(params);
+
+                            startActivity(it);
+                        }
+                    }));
                 }
             }
 
@@ -70,8 +88,5 @@ public class VotoFilmeActivity extends AppCompatActivity {
                 Toast.makeText(VotoFilmeActivity.this,"Erro ao buscar filmes.", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
 }
