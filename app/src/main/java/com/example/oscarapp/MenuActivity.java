@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import retrofit2.Response;
 public class MenuActivity extends AppCompatActivity {
 
     TextView textViewToken;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         textViewToken = findViewById(R.id.textViewToken);
         textViewToken.setText("Token: " + MainActivity.user.getToken());
+        imageView = findViewById(R.id.imageView);
+        imageView.setImageResource(R.drawable.oscar);
     }
 
     @Override

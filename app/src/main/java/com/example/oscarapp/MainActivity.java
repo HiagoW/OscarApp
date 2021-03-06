@@ -50,58 +50,58 @@ public class MainActivity extends AppCompatActivity {
                 user.setLogin(usuario);
                 user.setSenha(senhamd5);
 
-                ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setMessage("Login...");
-                progressDialog.show();
-
-                Call<Usuario> call = new RetrofitConfigWebService().webService().login(user);
-
-                call.enqueue(new Callback<Usuario>() {
-                    @Override
-                    public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                        if(response.isSuccessful()){
-                            user = response.body();
-                            voto.setUsuario(user);
-                            progressDialog.dismiss();
-                            if(user.isVotou()){
-                                ProgressDialog progressDialog2 = new ProgressDialog(MainActivity.this);
-                                progressDialog2.setMessage("Buscando voto...");
-                                progressDialog2.show();
-                                Call<Voto> call2 = new RetrofitConfigWebService().webService().buscarVoto(user);
-                                call2.enqueue(new Callback<Voto>(){
-
-                                    @Override
-                                    public void onResponse(Call<Voto> call, Response<Voto> response) {
-                                        if(response.isSuccessful()){
-                                            voto = response.body();
-                                            progressDialog2.dismiss();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<Voto> call, Throwable t) {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(MainActivity.this, "Erro no buscar voto.", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
+//                ProgressDialog progressDialog = new ProgressDialog(this);
+//                progressDialog.setMessage("Login...");
+//                progressDialog.show();
+//
+//                Call<Usuario> call = new RetrofitConfigWebService().webService().login(user);
+//
+//                call.enqueue(new Callback<Usuario>() {
+//                    @Override
+//                    public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+//                        if(response.isSuccessful()){
+//                            user = response.body();
+//                            voto.setUsuario(user);
+//                            progressDialog.dismiss();
+//                            if(user.isVotou()){
+//                                ProgressDialog progressDialog2 = new ProgressDialog(MainActivity.this);
+//                                progressDialog2.setMessage("Buscando voto...");
+//                                progressDialog2.show();
+//                                Call<Voto> call2 = new RetrofitConfigWebService().webService().buscarVoto(user);
+//                                call2.enqueue(new Callback<Voto>(){
+//
+//                                    @Override
+//                                    public void onResponse(Call<Voto> call, Response<Voto> response) {
+//                                        if(response.isSuccessful()){
+//                                            voto = response.body();
+//                                            progressDialog2.dismiss();
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailure(Call<Voto> call, Throwable t) {
+//                                        progressDialog.dismiss();
+//                                        Toast.makeText(MainActivity.this, "Erro no buscar voto.", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                            }
                             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                             startActivity(intent);
-                        }else if(response.code() == 401){
-                            progressDialog.dismiss();
-                            Toast.makeText(MainActivity.this, "Usuário ou senha incorretos.", Toast.LENGTH_SHORT).show();
-                        }else{
-                            progressDialog.dismiss();
-                            Toast.makeText(MainActivity.this, "Erro no login.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Usuario> call, Throwable t) {
-                        progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this, "Erro no login.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//                        }else if(response.code() == 401){
+//                            progressDialog.dismiss();
+//                            Toast.makeText(MainActivity.this, "Usuário ou senha incorretos.", Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            progressDialog.dismiss();
+//                            Toast.makeText(MainActivity.this, "Erro no login.", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Usuario> call, Throwable t) {
+//                        progressDialog.dismiss();
+//                        Toast.makeText(MainActivity.this, "Erro no login.", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
             }catch (Exception e){
                 Toast.makeText(this,"Erro no processo de login.",Toast.LENGTH_SHORT).show();
             }
