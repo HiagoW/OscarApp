@@ -53,6 +53,10 @@ public class MenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(MenuActivity.this, ConfirmarVotoActivity.class);
                 startActivity(intent);
             }
+        }else if(item.getItemId()==R.id.sair){
+            Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
